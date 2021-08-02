@@ -7,3 +7,19 @@ services:
             - "8080:80"
         volumes:
             - ./:/usr/share/nginx
+        networks: 
+            - app-network
+
+    mysql-app:
+        image: mysql
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: pharmainc
+            MYSQL_ROOT_PASSWORD: pharmainc
+        networks: 
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
